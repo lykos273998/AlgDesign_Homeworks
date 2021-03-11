@@ -26,13 +26,19 @@ def gauss_matrix_mult(A: Matrix, B: Matrix) -> Matrix:
         rows of `B`
     '''
     if A.num_of_cols != B.num_of_rows:
-        raise ValueError("Wrong matrix shape: number of columns of A is %d, number of rows of B is %d" % (A.num_of_cols, B.num_of_cols) )
+        raise ValueError("Wrong matrix shape: number of columns of A is %d, number of rows of B is %d" % (A.num_of_cols, B.num_of_rows) )
         
     C = Matrix([[0 for j in range(B.num_of_cols)] for i in range(A.num_of_rows)])
+
+    """  print(A.num_of_rows)
+    print(A.num_of_cols)
+    print(B.num_of_rows)
+    print(B.num_of_cols)"""
     
     for i in range(A.num_of_rows):
-        for k in range(A.num_of_rows):
-            for j in range(A.num_of_rows):
+        for j in range(B.num_of_cols):
+            for k in range(A.num_of_cols):
+            
                 C[i][j] += A[i][k]*B[k][j]
     
     return C
